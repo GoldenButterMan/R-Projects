@@ -19,11 +19,6 @@ text <- data.frame(line = 1:length(file), text = file);
 wordList <- text %>%
     unnest_tokens(word, text);
 
-data("stop_words");
-
-wordList <- wordList %>%
-    anti_join(stop_words, by = "word");
-
 wordFrequency <- wordList %>%
     count(word, sort = TRUE);
 
