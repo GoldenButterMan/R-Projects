@@ -26,7 +26,9 @@ print(word_frequency)
 
 #graph word frequency as bar graph
 
+print(
 ggplot(word_frequency, aes(x = reorder(word, n), y = n)) +
   geom_col(fill = "green") +
   coord_flip() +
   labs(title = "Top 10 frequent Words", x = "Word", y = "Frequency")
+)
