@@ -11,22 +11,22 @@ library("dplyr")
 library("ggplot2")
 
 #user input for file name
-userPrompt <- readline(prompt = "Enter file name: ")
-file <- readLines(userPrompt)
+user_prompt <- readline(prompt = "Enter file name: ")
+file <- readLines(user_prompt)
 
 #make dataframe and convert to a list of words
-text <- data.frame(line = 1:length(file), text = file)
-wordList <- text %>%
-    unnest_tokens(word, text)
+text <- data.frame(line = seq_along(file), text = file)
+word_list <- text %>%
+  unnest_tokens(word, text)
 
-wordFrequency <- wordList %>%
-    count(word, sort = TRUE)
+word_frequency <- word_list %>%
+  count(word, sort = TRUE)
 
-print(wordFrequency)
+print(word_frequency)
 
 #graph word frequency as bar graph
-windows()
-ggplot(wordFrequency, aes(x = reorder(word, n), y = n)) +
+
+ggplot(word_frequency, aes(x = reorder(word, n), y = n)) +
   geom_col(fill = "green") +
   coord_flip() +
   labs(title = "Top 10 frequent Words", x = "Word", y = "Frequency")
