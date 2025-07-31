@@ -24,10 +24,12 @@ word_frequency <- word_list %>%
 
 print(word_frequency)
 
-# graph word frequency as bar graph
+# graph top 10 frequent words as bar graph
+top_10 <- word_frequency %>%
+    top_n(10, n)
 
 print(
-    ggplot(word_frequency, aes(x = reorder(word, n), y = n)) +
+    ggplot(top_10, aes(x = reorder(word, n), y = n)) +
         geom_col(fill = "green") +
         coord_flip() +
         labs(title = "Top 10 frequent Words", x = "Word", y = "Frequency")
