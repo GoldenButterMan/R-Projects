@@ -12,6 +12,9 @@ library("ggplot2")
 
 # user input for file name
 user_prompt <- readline(prompt = "Enter file name: ")
+if(!file.exists(user_prompt)){
+    stop("This file does not exist")
+}
 file <- readLines(user_prompt)
 
 # make dataframe and convert to a list of words
